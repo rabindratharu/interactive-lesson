@@ -127,26 +127,26 @@ class Rest_Endpoint
         );
 
         // Register meta fields
-        register_meta('user', 'quiz_score', [
-            'type' => 'integer',
-            'description' => 'User quiz score',
-            'single' => true,
-            'show_in_rest' => true,
-            'default' => 0
+        register_meta('user', 'quiz_score_', [
+            'type'          => 'integer',
+            'description'   => esc_html__('User quiz score', 'interactive-lesson'),
+            'single'        => true,
+            'show_in_rest'  => true,
+            'default'       => 0
         ]);
 
         register_meta('user', 'quiz_answer_', [
-            'type' => 'string',
-            'description' => 'User answer for quiz question',
-            'single' => true,
-            'show_in_rest' => true
+            'type'          => 'string',
+            'description'   => esc_html__('Answer for quiz question', 'interactive-lesson'),
+            'single'        => true,
+            'show_in_rest'  => true
         ]);
 
         register_meta('user', 'quiz_correct_', [
-            'type' => 'string',
-            'description' => 'Correctness of quiz answer (1 or 0)',
-            'single' => true,
-            'show_in_rest' => true
+            'type'          => 'string',
+            'description'   => esc_html__('Correctness of quiz answer (1 or 0)', 'interactive-lesson'),
+            'single'        => true,
+            'show_in_rest'  => true
         ]);
     }
 
@@ -683,8 +683,8 @@ class Rest_Endpoint
 
         // Update score if correct
         if ($is_correct) {
-            $current_score = (int) get_user_meta($user_id, 'quiz_score', true);
-            update_user_meta($user_id, 'quiz_score', $current_score + 1);
+            $current_score = (int) get_user_meta($user_id, 'quiz_score_', true);
+            update_user_meta($user_id, 'quiz_score_', $current_score + 1);
         }
 
         return rest_ensure_response([
@@ -728,7 +728,7 @@ class Rest_Endpoint
         return rest_ensure_response([
             'success' => true,
             'results' => $results,
-            'total_score' => (int) get_user_meta($user_id, 'quiz_score', true)
+            'total_score' => (int) get_user_meta($user_id, 'quiz_score_', true)
         ]);
     }
 }
