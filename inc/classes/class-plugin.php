@@ -58,13 +58,12 @@ final class Plugin
 		Register_Post_Types::get_instance();
 		Register_Taxonomies::get_instance();
 		Meta_Boxes::get_instance();
-		Reviews::get_instance();
+		Shortcode::get_instance();
 		Rest_Endpoint::get_instance();
 		Customizer::get_instance();
 		if (is_admin()) {
 			Dashboard::get_instance();
 		}
-
 		Assets::get_instance();
 	}
 

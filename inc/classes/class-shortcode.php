@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Display Product Reviews
+ * Shortcode class for displaying product reviews.
  *
  * @package interactive-lesson
  * @since 1.0.0
@@ -17,33 +17,19 @@ if (! defined('ABSPATH')) {
 }
 
 /**
- * Handles the display of product reviews via shortcode.
+ * Handles to display reviews via shortcode.
  *
  * @since 1.0.0
  */
-class Reviews
+class Shortcode
 {
     use Singleton;
 
-    /**
-     * Meta key for product name.
-     */
-    private const PRODUCT_NAME_KEY = 'review_item';
-
-    /**
-     * Meta key for rating.
-     */
-    private const RATING_KEY = 'reviewer_rating';
-
-    /**
-     * Meta key for reviewer name.
-     */
-    private const REVIEWER_NAME_KEY = 'reviewer_name';
-
-    /**
-     * Number of reviews per page.
-     */
-    private const REVIEWS_PER_PAGE = 5;
+    const PRODUCT_NAME_KEY  = 'review_item';
+    const RATING_KEY        = 'reviewer_rating';
+    const REVIEWER_NAME_KEY = 'reviewer_name';
+    const POST_TYPE         = 'interactive_lesson';
+    const REVIEWS_PER_PAGE  = 5;
 
     /**
      * Initializes the class and sets up hooks.
@@ -60,13 +46,14 @@ class Reviews
      * Sets up hooks for the class.
      *
      * Adds a shortcode to retrieve and display product reviews.
+     * use [interactive_lesson_reviews] to display reviews.
      *
      * @since 1.0.0
      * @return void
      */
     protected function setup_hooks()
     {
-        add_shortcode('reviews', [$this, 'render_shortcode']);
+        add_shortcode('interactive_lesson_reviews', [$this, 'render_shortcode']);
     }
 
 
@@ -85,12 +72,12 @@ class Reviews
         $paged = max(1, get_query_var('paged') ?: (isset($_GET['paged']) ? absint($_GET['paged']) : 1));
 
         $query_args = [
-            'post_type'      => 'interactive_lesson',
-            'posts_per_page' => self::REVIEWS_PER_PAGE,
-            'post_status'    => 'publish',
-            'orderby'       => 'date',
-            'order'         => 'DESC',
-            'paged'          => $paged,
+            'post_type'         => self::POST_TYPE,
+            'posts_per_page'    => self::REVIEWS_PER_PAGE,
+            'post_status'       => 'publish',
+            'orderby'           => 'date',
+            'order'             => 'DESC',
+            'paged'             => $paged,
         ];
 
         $reviews = new WP_Query($query_args);
