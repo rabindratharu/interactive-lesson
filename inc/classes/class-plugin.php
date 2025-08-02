@@ -60,7 +60,6 @@ final class Plugin
 		Meta_Boxes::get_instance();
 		Reviews::get_instance();
 		Rest_Endpoint::get_instance();
-		Api_Settings::get_instance();
 		Customizer::get_instance();
 		if (is_admin()) {
 			Dashboard::get_instance();
