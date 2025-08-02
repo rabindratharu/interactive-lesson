@@ -1,0 +1,62 @@
+{
+	"name": "interactive-lesson",
+	"version": "1.0.0",
+	"description": "Example block scaffolded with Create Block tool.",
+	"author": "Rabindra Tharu",
+	"license": "GPL-2.0-or-later",
+	"main": "Gruntfile.js",
+	"scripts": {
+		"clean": "rimraf assets/build",
+		"init": "node ./bin/init.js && npm run build:pot && npm run build:zip",
+		"build:pot": "grunt i18n",
+		"build:zip": "grunt release",
+		"build:main": "wp-scripts build --webpack-src-dir=assets/src/main --output-path=assets/build/main",
+		"build:admin": "wp-scripts build --webpack-src-dir=assets/src/admin --output-path=assets/build/admin",
+		"build:editor": "wp-scripts build --webpack-src-dir=assets/src/editor --output-path=assets/build/editor",
+		"build:customizer": "wp-scripts build --webpack-src-dir=assets/src/customizer --output-path=assets/build/customizer",
+		"build:block": "wp-scripts build --webpack-src-dir=assets/src/block --output-path=assets/build/block --webpack-copy-php --blocks-manifest",
+		"build": "npm run clean && npm-run-all --parallel build:main build:admin build:editor build:customizer build:block",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start:main": "wp-scripts start --webpack-src-dir=assets/src/main --output-path=assets/build/main",
+		"start:admin": "wp-scripts start --webpack-src-dir=assets/src/admin --output-path=assets/build/admin",
+		"start:editor": "wp-scripts start --webpack-src-dir=assets/src/editor --output-path=assets/build/editor",
+		"start:customizer": "wp-scripts start --webpack-src-dir=assets/src/customizer --output-path=assets/build/customizer",
+		"start:block": "wp-scripts start --webpack-src-dir=assets/src/block --output-path=assets/build/block --webpack-copy-php --blocks-manifest",
+		"start": "npm run clean && npm-run-all --parallel start:main start:admin start:editor start:customizer start:block",
+		"prepare": "npm run init"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^30.17.0",
+		"autoprefixer": "^10.4.21",
+		"atrc": "^1.0.37",
+		"copy-webpack-plugin": "^13.0.0",
+		"grunt": "^1.6.1",
+		"grunt-checktextdomain": "^1.0.1",
+		"grunt-contrib-clean": "^2.0.1",
+		"grunt-contrib-compress": "^2.0.0",
+		"grunt-contrib-copy": "^1.0.0",
+		"grunt-wp-i18n": "^1.0.3",
+		"grunt-wp-readme-to-markdown": "^2.1.0",
+		"load-grunt-tasks": "^5.1.0",
+		"npm-run-all": "^4.1.5",
+		"rimraf": "^6.0.1",
+		"rtlcss-webpack-plugin": "^4.0.7",
+		"webpack-remove-empty-scripts": "^1.0.4"
+	},
+	"browserslist": {
+		"production": [
+			"> 0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
+}

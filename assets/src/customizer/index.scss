@@ -1,0 +1,54 @@
+$color_1: #f39c12;
+$color_2: #fff;
+$background-color_1: #0073aa;
+$border-color_1: #0073aa;
+
+.interactive-lesson-reviews {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.interactive-lesson-review {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+
+    h3 {
+        margin: 0 0 10px;
+        font-size: 1.5em;
+    }
+
+    p {
+        margin: 5px 0;
+    }
+
+    .star-rating {
+        color: $color_1;
+        font-size: 1.2em;
+    }
+}
+
+.interactive-lesson-pagination {
+    margin-top: 20px;
+
+    a {
+        margin: 0 5px;
+        padding: 5px 10px;
+        text-decoration: none;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    span {
+        margin: 0 5px;
+        padding: 5px 10px;
+        text-decoration: none;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    .current {
+        background-color: $background-color_1;
+        color: $color_2;
+        border-color: $border-color_1;
+    }
+}

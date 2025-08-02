@@ -1,0 +1,412 @@
+# Copyright (C) 2025 Rabindra Tharu
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Interactive Lesson 1.0.0\n"
+"Report-Msgid-Bugs-To: https://example.com/support\n"
+"POT-Creation-Date: 2025-07-31T10:06:37.844Z\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2025-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Your Team <team@example.com>\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: grunt-wp-i18n 1.0.3\n"
+
+#: inc/classes/class-api-settings.php:111
+msgid "You do not have permission to access this resource."
+msgstr ""
+
+#: inc/classes/class-api-settings.php:156
+msgid "Invalid settings data provided."
+msgstr ""
+
+#: inc/classes/class-api-settings.php:249
+msgid "The settings data could not be sanitized."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Interactive Lesson"
+msgstr ""
+
+#: inc/classes/class-customizer.php:108
+msgid "Default"
+msgstr ""
+
+#: inc/classes/class-customizer.php:118
+msgid "Text Control"
+msgstr ""
+
+#: inc/classes/class-customizer.php:119
+msgid "Description for this control."
+msgstr ""
+
+#: inc/classes/class-dashboard.php:75 inc/classes/class-utils.php:318
+msgid "Interactive Lesson Page"
+msgstr ""
+
+#: inc/classes/class-meta-boxes.php:73
+msgid "The ID of the product being reviewed"
+msgstr ""
+
+#: inc/classes/class-meta-boxes.php:77
+msgid "The rating given in the review (1-5)"
+msgstr ""
+
+#: inc/classes/class-meta-boxes.php:81
+msgid "The name of the reviewer"
+msgstr ""
+
+#: inc/classes/class-meta-boxes.php:140
+msgid "Review Details"
+msgstr ""
+
+#: inc/classes/class-meta-boxes.php:185
+msgid "Review Item"
+msgstr ""
+
+#: inc/classes/class-meta-boxes.php:191
+msgid "Select a Item"
+msgstr ""
+
+#: inc/classes/class-meta-boxes.php:201
+msgid "No items found"
+msgstr ""
+
+#: inc/classes/class-meta-boxes.php:209
+msgid "Rating (1-5)"
+msgstr ""
+
+#: inc/classes/class-meta-boxes.php:214
+msgid "Select Rating"
+msgstr ""
+
+#: inc/classes/class-meta-boxes.php:220
+msgid "%d Star%s"
+msgstr ""
+
+#: inc/classes/class-meta-boxes.php:233
+msgid "Reviewer's Name"
+msgstr ""
+
+#: inc/classes/class-plugin.php:117
+msgid "Cloning is forbidden."
+msgstr ""
+
+#: inc/classes/class-plugin.php:131
+msgid "Unserializing instances of this class is forbidden."
+msgstr ""
+
+#: inc/classes/class-register-post-types.php:133
+msgid "Add"
+msgstr ""
+
+#: inc/classes/class-register-post-types.php:140
+msgid "Not found"
+msgstr ""
+
+#: inc/classes/class-register-post-types.php:141
+msgid "Not found in Trash"
+msgstr ""
+
+#: inc/classes/class-register-post-types.php:142
+msgid "Featured Image"
+msgstr ""
+
+#: inc/classes/class-register-post-types.php:143
+msgid "Set featured image"
+msgstr ""
+
+#: inc/classes/class-register-post-types.php:144
+msgid "Remove featured image"
+msgstr ""
+
+#: inc/classes/class-register-post-types.php:145
+msgid "Use as featured image"
+msgstr ""
+
+#: inc/classes/class-register-post-types.php:177
+#: inc/classes/class-register-post-types.php:179
+msgid "Reviews"
+msgstr ""
+
+#: inc/classes/class-register-post-types.php:178
+msgid "Review"
+msgstr ""
+
+#: inc/classes/class-rest-endpoint.php:83
+msgid "Search query"
+msgstr ""
+
+#: inc/classes/class-rest-endpoint.php:90
+msgid "Comma-separated category IDs"
+msgstr ""
+
+#: inc/classes/class-rest-endpoint.php:97
+msgid "Comma-separated tag IDs"
+msgstr ""
+
+#: inc/classes/class-rest-endpoint.php:104
+msgid "Page number"
+msgstr ""
+
+#: inc/classes/class-rest-endpoint.php:111
+msgid "Posts per page"
+msgstr ""
+
+#: inc/classes/class-rest-endpoint.php:118
+msgid "Rating value or range (e.g., 4.5 or 3.0-5.0)"
+msgstr ""
+
+#: inc/classes/class-reviews.php:120
+msgid "No reviews found."
+msgstr ""
+
+#: inc/classes/class-reviews.php:137
+msgid "Product:"
+msgstr ""
+
+#: inc/classes/class-reviews.php:146
+msgid "Rating:"
+msgstr ""
+
+#: inc/classes/class-reviews.php:151
+msgid "Reviewer:"
+msgstr ""
+
+#: inc/classes/class-reviews.php:168
+msgid "« Previous"
+msgstr ""
+
+#: inc/classes/class-reviews.php:169
+msgid "Next »"
+msgstr ""
+
+#: inc/classes/class-utils.php:59
+msgid "(no title)"
+msgstr ""
+
+#: inc/classes/class-utils.php:76
+msgid "Default Setting 1"
+msgstr ""
+
+#: inc/classes/class-utils.php:77
+msgid "Default Setting 2"
+msgstr ""
+
+#: inc/classes/class-utils.php:160
+msgid "ABSPATH is not defined."
+msgstr ""
+
+#: inc/classes/class-utils.php:169
+msgid "Failed to initialize the WordPress filesystem."
+msgstr ""
+
+#: inc/classes/class-utils.php:233
+msgid "First text setting."
+msgstr ""
+
+#: inc/classes/class-utils.php:238
+msgid "Second text setting."
+msgstr ""
+
+#: inc/classes/class-utils.php:243
+msgid "First boolean setting."
+msgstr ""
+
+#: inc/classes/class-utils.php:248
+msgid "Second boolean setting."
+msgstr ""
+
+#: inc/classes/class-utils.php:253
+msgid "Option selection setting."
+msgstr ""
+
+#: inc/classes/class-utils.php:260
+msgid "Delete all settings on plugin deactivation."
+msgstr ""
+
+#: inc/classes/class-utils.php:328
+#. translators: %s is the plugin name
+msgid ""
+"Congratulations on choosing the %s for creating your plugin. We recommend "
+"taking a few minutes to read the following information on how the plugin "
+"works. Please read it carefully to fully understand the capabilities of the "
+"plugin and how to use them effectively."
+msgstr ""
+
+#: inc/classes/class-utils.php:337
+#. translators: %s is the plugin name
+msgid ""
+"Congratulations! You have successfully installed %s and it is ready for "
+"customization. Feel free to add/edit any files."
+msgstr ""
+
+#: inc/classes/class-utils.php:342
+#. translators: %s is the plugin name
+msgid ""
+"If you have any questions or need assistance, please do not hesitate to "
+"contact us for support. The %s plugin caters to WordPress developers and "
+"designers seeking to quickly start developing WordPress plugins in a modern "
+"way using ReactJS, Rest API."
+msgstr ""
+
+#: inc/classes/class-utils.php:348
+msgid "Get started"
+msgstr ""
+
+#: inc/classes/class-utils.php:354
+msgid "Documentation"
+msgstr ""
+
+#: inc/classes/class-utils.php:361
+msgid "Get support"
+msgstr ""
+
+#: inc/classes/class-utils.php:373
+msgid "Visit site"
+msgstr ""
+
+#: inc/classes/class-utils.php:378 inc/classes/class-utils.php:390
+msgid "Get Support"
+msgstr ""
+
+#: inc/classes/class-utils.php:385
+msgid "Contact Information"
+msgstr ""
+
+#: inc/classes/class-utils.php:389
+msgid "Support"
+msgstr ""
+
+#: inc/classes/class-utils.php:396
+msgid "Email"
+msgstr ""
+
+#: inc/classes/class-utils.php:397
+msgid "rabindra.tharu.np@gmail.com"
+msgstr ""
+
+#: inc/classes/class-utils.php:403
+msgid "Location"
+msgstr ""
+
+#: inc/classes/class-utils.php:404
+msgid "Kathmandu, Nepal"
+msgstr ""
+
+#: inc/classes/class-utils.php:428
+msgid "Activate Plugin"
+msgstr ""
+
+#: inc/classes/class-utils.php:432
+msgid "Login settings"
+msgstr ""
+
+#: inc/classes/class-utils.php:436
+msgid "Dashboard settings"
+msgstr ""
+
+#: inc/classes/class-utils.php:442
+msgid "Knowledge base"
+msgstr ""
+
+#: inc/classes/class-utils.php:443
+msgid ""
+"The utilization of this plugin can be facilitated by perusing comprehensive "
+"and well-documented articles."
+msgstr ""
+
+#: inc/classes/class-utils.php:444
+msgid "Visit knowledge base"
+msgstr ""
+
+#: inc/classes/class-utils.php:449
+msgid "Community"
+msgstr ""
+
+#: inc/classes/class-utils.php:452
+#. translators: %s is the plugin name
+msgid ""
+"Our objective is to enhance the customer experience, we invite you to join "
+"our community where you can receive immediate support."
+msgstr ""
+
+#: inc/classes/class-utils.php:455
+msgid "Visit community page"
+msgstr ""
+
+#: inc/classes/class-utils.php:460
+msgid "24x7 support"
+msgstr ""
+
+#: inc/classes/class-utils.php:463
+#. translators: %s is the plugin name
+msgid ""
+"Our support team is available 24/7 to assist you in the event that you "
+"encounter any problems while utilizing this plugin."
+msgstr ""
+
+#: inc/classes/class-utils.php:466
+msgid "Create a support thread"
+msgstr ""
+
+#: inc/classes/class-utils.php:471
+msgid "Video guide"
+msgstr ""
+
+#: inc/classes/class-utils.php:474
+#. translators: %s is the plugin name
+msgid ""
+"The plugin is accompanied by comprehensive video tutorials that provide "
+"practical demonstrations for most customization."
+msgstr ""
+
+#: inc/classes/class-utils.php:477
+msgid "View video guide"
+msgstr ""
+
+#: inc/classes/class-utils.php:483
+msgid "Quick links to settings"
+msgstr ""
+
+#: inc/classes/class-utils.php:487
+msgid "Settings 1"
+msgstr ""
+
+#: inc/classes/class-utils.php:494
+msgid "Settings 2"
+msgstr ""
+
+#: inc/classes/class-utils.php:501
+msgid "Advanced settings"
+msgstr ""
+
+#: inc/classes/class-utils.php:510
+msgid "Changelog"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"A WordPress plugin with a custom post type, meta fields, shortcode, and "
+"REST API settings."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Rabindra Tharu"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://github.com/rabindratharu"
+msgstr ""
