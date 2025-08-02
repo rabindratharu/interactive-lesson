@@ -53,8 +53,8 @@ final class Plugin
 	 */
 	protected function setup_classes()
 	{
-		Assets::get_instance();
 		Utils::get_instance();
+		Register_Block::get_instance();
 		Register_Post_Types::get_instance();
 		Register_Taxonomies::get_instance();
 		Meta_Boxes::get_instance();
@@ -62,10 +62,11 @@ final class Plugin
 		Rest_Endpoint::get_instance();
 		Api_Settings::get_instance();
 		Customizer::get_instance();
-
 		if (is_admin()) {
 			Dashboard::get_instance();
 		}
+
+		Assets::get_instance();
 	}
 
 	/**
@@ -77,7 +78,6 @@ final class Plugin
 	protected function setup_hooks()
 	{
 		add_action('init', [$this, 'load_textdomain'], -999);
-		add_action('init', [$this, 'register_block_types']);
 	}
 
 	/**
@@ -149,34 +149,5 @@ final class Plugin
 			esc_html__('Unserializing is forbidden.', 'interactive-lesson'),
 			self::VERSION
 		);
-	}
-
-
-	/**
-	 * Auto-register all block types from assets/build/block/../block.json
-	 *
-	 * @since 1.0.0
-	 * @return void
-	 */
-	public function register_block_types()
-	{
-		if (! function_exists('register_block_type')) {
-			return;
-		}
-
-		$block_path = INTERACTIVE_LESSON_PATH . 'assets/build/block/';
-		if (! file_exists($block_path)) {
-			return;
-		}
-
-		$block_json_files = glob($block_path . '*/block.json');
-		if (empty($block_json_files)) {
-			return;
-		}
-
-		foreach ($block_json_files as $filename) {
-			$block_folder = dirname($filename);
-			register_block_type($block_folder);
-		}
 	}
 }

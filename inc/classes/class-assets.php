@@ -52,34 +52,9 @@ class Assets
     public function register_assets()
     {
         $suffix = is_rtl() ? '-rtl' : '';
-        // Register styles.
+        // Styles.
         wp_register_style('interactive-lesson-main', INTERACTIVE_LESSON_BUILD_PATH_URL . "/main/index{$suffix}.css", [], filemtime(INTERACTIVE_LESSON_BUILD_PATH . "/main/index{$suffix}.css"), 'all');
-        // Enqueue Styles.
         wp_enqueue_style('interactive-lesson-main');
-
-        $asset_config_file = sprintf('%s/block/quiz-block/view.asset.php', INTERACTIVE_LESSON_BUILD_PATH);
-
-        if (! file_exists($asset_config_file)) {
-            return;
-        }
-
-        $editor_asset   = include_once $asset_config_file;
-        $js_dependencies = (! empty($editor_asset['dependencies'])) ? $editor_asset['dependencies'] : [];
-        $version         = (! empty($editor_asset['version'])) ? $editor_asset['version'] : filemtime($asset_config_file);
-
-        // Block Quiz JS.
-        wp_enqueue_script(
-            'interactive-lesson-quiz-block',
-            INTERACTIVE_LESSON_BUILD_PATH_URL . '/block/quiz-block/view.js',
-            array_unique(array_merge($js_dependencies, ['wp-api-fetch', 'wp-blocks', 'wp-element', 'wp-components', 'wp-i18n'])),
-            $version,
-            true
-        );
-
-        wp_localize_script('interactive-lesson-quiz-block', 'quizBlockData', array(
-            'restUrl'   => esc_url_raw(rest_url('quiz/v1/submit')),
-            'nonce'     => wp_create_nonce('wp_rest')
-        ));
     }
 
     /**

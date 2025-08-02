@@ -6,8 +6,8 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'interactive-lesson/quiz-block',
 		'version' => '1.0.0',
-		'title' => 'Interactive Lesson Quiz Block',
-		'category' => 'common',
+		'title' => 'Quiz Block',
+		'category' => 'interactive-lesson',
 		'icon' => 'welcome-learn-more',
 		'description' => 'Quiz block for interactive lessons.',
 		'example' => array(
