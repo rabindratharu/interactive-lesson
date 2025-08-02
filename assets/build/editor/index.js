@@ -45,8 +45,14 @@ class Sidebar extends _wordpress_element__WEBPACK_IMPORTED_MODULE_2__.Component 
     const {
       meta,
       setMetaFieldValue,
-      products
+      products,
+      postType
     } = this.props;
+
+    // Don't render if not our post type
+    if (postType !== 'interactive_lesson') {
+      return null;
+    }
 
     // Prepare product options for SelectControl
     const productOptions = [{
@@ -104,6 +110,8 @@ class Sidebar extends _wordpress_element__WEBPACK_IMPORTED_MODULE_2__.Component 
   // Retrieve the current post's saved meta
   const postMeta = select("core/editor").getEditedPostAttribute("meta");
   const oldPostMeta = select("core/editor").getCurrentPostAttribute("meta");
+  // Fetch the current post type
+  const postType = select("core/editor").getEditedPostAttribute("type");
   // Fetch all WooCommerce products
   const products = select('core').getEntityRecords('postType', 'post', {
     per_page: -1,
@@ -116,7 +124,8 @@ class Sidebar extends _wordpress_element__WEBPACK_IMPORTED_MODULE_2__.Component 
       ...postMeta
     },
     oldMeta: oldPostMeta,
-    products
+    products,
+    postType // Add postType to the props
   };
 }), (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.withDispatch)(dispatch => ({
   setMetaFieldValue: (value, field) => dispatch("core/editor").editPost({

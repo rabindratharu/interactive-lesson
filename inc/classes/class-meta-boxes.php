@@ -12,7 +12,7 @@ namespace Interactive_Lesson\Inc;
 use Interactive_Lesson\Inc\Traits\Singleton;
 use Interactive_Lesson\Inc\Utils;
 
-if (! defined('ABSPATH')) {
+if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
@@ -33,13 +33,11 @@ class Meta_Boxes
     const PRODUCT_NAME_FIELD = 'review_item';
     const RATING_FIELD = 'reviewer_rating';
     const REVIEWER_NAME_FIELD = 'reviewer_name';
-    const NONCE_FIELD = 'met_box_nonce';
+    const NONCE_FIELD = 'meta_box_nonce'; // Fixed typo in constant name
     const POST_TYPE = 'interactive_lesson';
 
     /**
      * Private constructor to prevent direct object creation.
-     *
-     * @since 1.0.0
      */
     protected function __construct()
     {
@@ -48,22 +46,21 @@ class Meta_Boxes
 
     /**
      * Set up action hooks.
-     *
-     * @since 1.0.0
-     * @return void
      */
     protected function setup_hooks()
     {
+        // Register meta on 'init' with proper priority
         add_action('init', [$this, 'register_meta'], 20);
-        add_action('add_meta_boxes', [$this, 'add_custom_meta_box']);
-        add_action('save_post', [$this, 'save_post_meta_data']);
+
+        // Add meta box only for our post type
+        add_action('add_meta_boxes_' . self::POST_TYPE, [$this, 'add_custom_meta_box']);
+
+        // Save hook with specific priority
+        add_action('save_post_' . self::POST_TYPE, [$this, 'save_post_meta_data'], 10, 2);
     }
 
     /**
-     * Register post meta.
-     * 
-     * @since 1.0.0
-     * @return void
+     * Register post meta specifically for our post type.
      */
     public function register_meta()
     {
@@ -71,14 +68,17 @@ class Meta_Boxes
             self::PRODUCT_NAME_FIELD => [
                 'type' => 'integer',
                 'description' => __('The ID of the product being reviewed', 'interactive-lesson'),
+                'sanitize_callback' => 'absint',
             ],
             self::RATING_FIELD => [
                 'type' => 'number',
                 'description' => __('The rating given in the review (1-5)', 'interactive-lesson'),
+                'sanitize_callback' => [$this, 'sanitize_rating'],
             ],
             self::REVIEWER_NAME_FIELD => [
                 'type' => 'string',
                 'description' => __('The name of the reviewer', 'interactive-lesson'),
+                'sanitize_callback' => 'sanitize_text_field',
             ]
         ];
 
@@ -91,7 +91,7 @@ class Meta_Boxes
                     'single' => true,
                     'type' => $args['type'],
                     'description' => $args['description'],
-                    'sanitize_callback' => [$this, 'sanitize_meta_data'],
+                    'sanitize_callback' => $args['sanitize_callback'],
                     'auth_callback' => function () {
                         return current_user_can('edit_posts');
                     },
@@ -101,37 +101,16 @@ class Meta_Boxes
     }
 
     /**
-     * Sanitize meta data before saving
-     *
-     * @param mixed $meta_value The meta value to sanitize
-     * @param string $meta_key The meta key
-     * @param string $object_type The object type
-     * @return mixed Sanitized meta value
+     * Special sanitization for rating field
      */
-    public function sanitize_meta_data($meta_value, $meta_key, $object_type)
+    public function sanitize_rating($rating)
     {
-        if ($object_type !== self::POST_TYPE) {
-            return $meta_value;
-        }
-
-        switch ($meta_key) {
-            case self::PRODUCT_NAME_FIELD:
-                return absint($meta_value);
-            case self::RATING_FIELD:
-                $rating = absint($meta_value);
-                return ($rating >= 1 && $rating <= 5) ? $rating : '';
-            case self::REVIEWER_NAME_FIELD:
-                return sanitize_text_field($meta_value);
-            default:
-                return $meta_value;
-        }
+        $rating = absint($rating);
+        return ($rating >= 1 && $rating <= 5) ? $rating : '';
     }
 
     /**
-     * Add custom meta box for product reviews.
-     *
-     * @since 1.0.0
-     * @return void
+     * Add custom meta box to our post type edit screen.
      */
     public function add_custom_meta_box()
     {
@@ -148,17 +127,9 @@ class Meta_Boxes
 
     /**
      * Render meta box content.
-     *
-     * @param \WP_Post $post Post object.
-     * @return void
      */
     public function render_meta_box_content($post)
     {
-        // Verify post type
-        if ($post->post_type !== self::POST_TYPE) {
-            return;
-        }
-
         // Get current values with proper sanitization
         $product_name = get_post_meta($post->ID, self::PRODUCT_NAME_FIELD, true);
         $rating = get_post_meta($post->ID, self::RATING_FIELD, true);
@@ -215,13 +186,7 @@ class Meta_Boxes
                     </option>
                     <?php for ($i = 1; $i <= 5; $i++) : ?>
                         <option value="<?php echo esc_attr($i); ?>" <?php selected($rating, $i); ?>>
-                            <?php
-                            printf(
-                                esc_html__('%d Star%s', 'interactive-lesson'),
-                                $i,
-                                $i > 1 ? 's' : ''
-                            );
-                            ?>
+                            <?php echo esc_html(sprintf(_n('%d Star', '%d Stars', $i, 'interactive-lesson'), $i)); ?>
                         </option>
                     <?php endfor; ?>
                 </select>
@@ -242,29 +207,13 @@ class Meta_Boxes
 
     /**
      * Save post meta data when the post is saved.
-     *
-     * @param int $post_id Post ID.
-     * @return void
      */
-    public function save_post_meta_data(int $post_id)
+    public function save_post_meta_data($post_id, $post)
     {
-        // Check if this is an autosave
-        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-            return;
-        }
-
-        // Verify post type
-        if (!isset($_POST['post_type']) || $_POST['post_type'] !== self::POST_TYPE) {
-            return;
-        }
-
         // Verify nonce
         if (
             !isset($_POST[self::NONCE_FIELD]) ||
-            !wp_verify_nonce(
-                sanitize_text_field(wp_unslash($_POST[self::NONCE_FIELD])),
-                basename(__FILE__)
-            )
+            !wp_verify_nonce($_POST[self::NONCE_FIELD], basename(__FILE__))
         ) {
             return;
         }
@@ -285,11 +234,10 @@ class Meta_Boxes
 
         // Save Rating (1-5 only)
         if (isset($_POST[self::RATING_FIELD])) {
-            $rating = min(max(absint($_POST[self::RATING_FIELD]), 1), 5);
             update_post_meta(
                 $post_id,
                 self::RATING_FIELD,
-                $rating ?: ''
+                $this->sanitize_rating($_POST[self::RATING_FIELD])
             );
         }
 
@@ -298,7 +246,7 @@ class Meta_Boxes
             update_post_meta(
                 $post_id,
                 self::REVIEWER_NAME_FIELD,
-                sanitize_text_field(wp_unslash($_POST[self::REVIEWER_NAME_FIELD]))
+                sanitize_text_field($_POST[self::REVIEWER_NAME_FIELD])
             );
         }
     }
