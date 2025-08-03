@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Interactive Lesson 1.0.0\n"
 "Report-Msgid-Bugs-To: https://example.com/support\n"
-"POT-Creation-Date: 2025-07-31T10:06:37.844Z\n"
+"POT-Creation-Date: 2025-08-03T10:51:09.376Z\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,31 +24,19 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 
-#: inc/classes/class-api-settings.php:111
-msgid "You do not have permission to access this resource."
-msgstr ""
-
-#: inc/classes/class-api-settings.php:156
-msgid "Invalid settings data provided."
-msgstr ""
-
-#: inc/classes/class-api-settings.php:249
-msgid "The settings data could not be sanitized."
-msgstr ""
-
 #. Plugin Name of the plugin/theme
 msgid "Interactive Lesson"
 msgstr ""
 
-#: inc/classes/class-customizer.php:108
+#: inc/classes/class-customizer.php:106
 msgid "Default"
 msgstr ""
 
-#: inc/classes/class-customizer.php:118
+#: inc/classes/class-customizer.php:116
 msgid "Text Control"
 msgstr ""
 
-#: inc/classes/class-customizer.php:119
+#: inc/classes/class-customizer.php:117
 msgid "Description for this control."
 msgstr ""
 
@@ -56,140 +44,214 @@ msgstr ""
 msgid "Interactive Lesson Page"
 msgstr ""
 
-#: inc/classes/class-meta-boxes.php:73
+#: inc/classes/class-graphql.php:49
+msgid "Interactive Lesson data"
+msgstr ""
+
+#: inc/classes/class-graphql.php:51 inc/classes/class-graphql.php:65
+msgid "Lesson ID"
+msgstr ""
+
+#: inc/classes/class-graphql.php:52
+msgid "Lesson title"
+msgstr ""
+
+#: inc/classes/class-graphql.php:53
+msgid "Lesson content"
+msgstr ""
+
+#: inc/classes/class-graphql.php:54
+msgid "Publication date"
+msgstr ""
+
+#: inc/classes/class-graphql.php:55
+msgid "Lesson URL"
+msgstr ""
+
+#: inc/classes/class-graphql.php:56
+msgid "Thumbnail URL"
+msgstr ""
+
+#: inc/classes/class-graphql.php:57
+msgid "ACF fields as JSON"
+msgstr ""
+
+#: inc/classes/class-graphql.php:63
+msgid "Retrieve a single lesson by ID"
+msgstr ""
+
+#: inc/classes/class-meta-boxes.php:70
 msgid "The ID of the product being reviewed"
 msgstr ""
 
-#: inc/classes/class-meta-boxes.php:77
+#: inc/classes/class-meta-boxes.php:75
 msgid "The rating given in the review (1-5)"
 msgstr ""
 
-#: inc/classes/class-meta-boxes.php:81
+#: inc/classes/class-meta-boxes.php:80
 msgid "The name of the reviewer"
 msgstr ""
 
-#: inc/classes/class-meta-boxes.php:140
+#: inc/classes/class-meta-boxes.php:119
 msgid "Review Details"
 msgstr ""
 
-#: inc/classes/class-meta-boxes.php:185
+#: inc/classes/class-meta-boxes.php:156
 msgid "Review Item"
 msgstr ""
 
-#: inc/classes/class-meta-boxes.php:191
+#: inc/classes/class-meta-boxes.php:162
 msgid "Select a Item"
 msgstr ""
 
-#: inc/classes/class-meta-boxes.php:201
+#: inc/classes/class-meta-boxes.php:172
 msgid "No items found"
 msgstr ""
 
-#: inc/classes/class-meta-boxes.php:209
+#: inc/classes/class-meta-boxes.php:180
 msgid "Rating (1-5)"
 msgstr ""
 
-#: inc/classes/class-meta-boxes.php:214
+#: inc/classes/class-meta-boxes.php:185
 msgid "Select Rating"
 msgstr ""
 
-#: inc/classes/class-meta-boxes.php:220
-msgid "%d Star%s"
-msgstr ""
+#: inc/classes/class-meta-boxes.php:189
+msgid "%d Star"
+msgid_plural "%d Stars"
+msgstr[0] ""
+msgstr[1] ""
 
-#: inc/classes/class-meta-boxes.php:233
+#: inc/classes/class-meta-boxes.php:198
 msgid "Reviewer's Name"
 msgstr ""
 
-#: inc/classes/class-plugin.php:117
+#: inc/classes/class-plugin.php:134
 msgid "Cloning is forbidden."
 msgstr ""
 
-#: inc/classes/class-plugin.php:131
-msgid "Unserializing instances of this class is forbidden."
+#: inc/classes/class-plugin.php:148
+msgid "Unserializing is forbidden."
 msgstr ""
 
-#: inc/classes/class-register-post-types.php:133
+#: inc/classes/class-register-post-types.php:131
 msgid "Add"
 msgstr ""
 
-#: inc/classes/class-register-post-types.php:140
+#: inc/classes/class-register-post-types.php:138
 msgid "Not found"
 msgstr ""
 
-#: inc/classes/class-register-post-types.php:141
+#: inc/classes/class-register-post-types.php:139
 msgid "Not found in Trash"
 msgstr ""
 
-#: inc/classes/class-register-post-types.php:142
+#: inc/classes/class-register-post-types.php:140
 msgid "Featured Image"
 msgstr ""
 
-#: inc/classes/class-register-post-types.php:143
+#: inc/classes/class-register-post-types.php:141
 msgid "Set featured image"
 msgstr ""
 
-#: inc/classes/class-register-post-types.php:144
+#: inc/classes/class-register-post-types.php:142
 msgid "Remove featured image"
 msgstr ""
 
-#: inc/classes/class-register-post-types.php:145
+#: inc/classes/class-register-post-types.php:143
 msgid "Use as featured image"
 msgstr ""
 
-#: inc/classes/class-register-post-types.php:177
-#: inc/classes/class-register-post-types.php:179
-msgid "Reviews"
+#: inc/classes/class-register-post-types.php:162
+#: inc/classes/class-register-post-types.php:164
+msgid "Interactive Lessons"
 msgstr ""
 
-#: inc/classes/class-register-post-types.php:178
-msgid "Review"
+#: inc/classes/class-register-taxonomies.php:161
+msgid "Grade Level"
 msgstr ""
 
-#: inc/classes/class-rest-endpoint.php:83
+#: inc/classes/class-register-taxonomies.php:162
+msgid "Grade Levels"
+msgstr ""
+
+#: inc/classes/class-rest-endpoint.php:140
+msgid "User quiz score"
+msgstr ""
+
+#: inc/classes/class-rest-endpoint.php:145
+msgid "Answer for quiz question"
+msgstr ""
+
+#: inc/classes/class-rest-endpoint.php:149
+msgid "Correctness of quiz answer (1 or 0)"
+msgstr ""
+
+#: inc/classes/class-rest-endpoint.php:153
+msgid "Timestamp of quiz submission"
+msgstr ""
+
+#: inc/classes/class-rest-endpoint.php:179
 msgid "Search query"
 msgstr ""
 
-#: inc/classes/class-rest-endpoint.php:90
+#: inc/classes/class-rest-endpoint.php:186
 msgid "Comma-separated category IDs"
 msgstr ""
 
-#: inc/classes/class-rest-endpoint.php:97
+#: inc/classes/class-rest-endpoint.php:193
 msgid "Comma-separated tag IDs"
 msgstr ""
 
-#: inc/classes/class-rest-endpoint.php:104
+#: inc/classes/class-rest-endpoint.php:200
 msgid "Page number"
 msgstr ""
 
-#: inc/classes/class-rest-endpoint.php:111
+#: inc/classes/class-rest-endpoint.php:207
 msgid "Posts per page"
 msgstr ""
 
-#: inc/classes/class-rest-endpoint.php:118
+#: inc/classes/class-rest-endpoint.php:214
 msgid "Rating value or range (e.g., 4.5 or 3.0-5.0)"
 msgstr ""
 
-#: inc/classes/class-reviews.php:120
+#: inc/classes/class-rest-endpoint.php:520
+msgid "You do not have permission to access this resource."
+msgstr ""
+
+#: inc/classes/class-rest-endpoint.php:537
+msgid "You must be logged in to access this resource."
+msgstr ""
+
+#: inc/classes/class-rest-endpoint.php:582
+msgid "Invalid settings data provided."
+msgstr ""
+
+#: inc/classes/class-rest-endpoint.php:675
+msgid "The settings data could not be sanitized."
+msgstr ""
+
+#: inc/classes/class-shortcode.php:107
 msgid "No reviews found."
 msgstr ""
 
-#: inc/classes/class-reviews.php:137
+#: inc/classes/class-shortcode.php:124
 msgid "Product:"
 msgstr ""
 
-#: inc/classes/class-reviews.php:146
+#: inc/classes/class-shortcode.php:133
 msgid "Rating:"
 msgstr ""
 
-#: inc/classes/class-reviews.php:151
+#: inc/classes/class-shortcode.php:138
 msgid "Reviewer:"
 msgstr ""
 
-#: inc/classes/class-reviews.php:168
+#: inc/classes/class-shortcode.php:155
 msgid "« Previous"
 msgstr ""
 
-#: inc/classes/class-reviews.php:169
+#: inc/classes/class-shortcode.php:156
 msgid "Next »"
 msgstr ""
 
@@ -235,6 +297,10 @@ msgstr ""
 
 #: inc/classes/class-utils.php:260
 msgid "Delete all settings on plugin deactivation."
+msgstr ""
+
+#: inc/classes/class-utils.php:319
+msgid "Interactive Settings"
 msgstr ""
 
 #: inc/classes/class-utils.php:328
@@ -398,9 +464,7 @@ msgid "Changelog"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid ""
-"A WordPress plugin with a custom post type, meta fields, shortcode, and "
-"REST API settings."
+msgid "Create interactive quizzes and lessons with Gutenberg."
 msgstr ""
 
 #. Author of the plugin/theme

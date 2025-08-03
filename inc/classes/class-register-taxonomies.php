@@ -75,17 +75,17 @@ class Register_Taxonomies
 
                     // Add new taxonomy, make it hierarchical (like categories)
                     $labels = array(
-                        'name'              => esc_html_x($value['general_name'], 'taxonomy general name', 'ociolanzarote'),
-                        'singular_name'     => esc_html_x($value['singular_name'], 'taxonomy singular name', 'ociolanzarote'),
-                        'search_items'      => esc_html__('Search ' . $value['general_name'], 'ociolanzarote'),
-                        'all_items'         => esc_html__('All ' . $value['general_name'], 'ociolanzarote'),
-                        'parent_item'       => esc_html__('Parent ' . $value['singular_name'], 'ociolanzarote'),
-                        'parent_item_colon' => esc_html__('Parent ' . $value['singular_name'] . ':', 'ociolanzarote'),
-                        'edit_item'         => esc_html__('Edit ' . $value['singular_name'], 'ociolanzarote'),
-                        'update_item'       => esc_html__('Update '  . $value['singular_name'], 'ociolanzarote'),
-                        'add_new_item'      => esc_html__('Add ' . $value['singular_name'], 'ociolanzarote'),
-                        'new_item_name'     => esc_html__('New ' . $value['singular_name'] . ' Name', 'ociolanzarote'),
-                        'menu_name'         => esc_html__($value['general_name'], 'ociolanzarote'),
+                        'name'              => esc_html_x($value['general_name'], 'taxonomy general name', 'interactive-lesson'),
+                        'singular_name'     => esc_html_x($value['singular_name'], 'taxonomy singular name', 'interactive-lesson'),
+                        'search_items'      => esc_html__('Search ' . $value['general_name'], 'interactive-lesson'),
+                        'all_items'         => esc_html__('All ' . $value['general_name'], 'interactive-lesson'),
+                        'parent_item'       => esc_html__('Parent ' . $value['singular_name'], 'interactive-lesson'),
+                        'parent_item_colon' => esc_html__('Parent ' . $value['singular_name'] . ':', 'interactive-lesson'),
+                        'edit_item'         => esc_html__('Edit ' . $value['singular_name'], 'interactive-lesson'),
+                        'update_item'       => esc_html__('Update '  . $value['singular_name'], 'interactive-lesson'),
+                        'add_new_item'      => esc_html__('Add ' . $value['singular_name'], 'interactive-lesson'),
+                        'new_item_name'     => esc_html__('New ' . $value['singular_name'] . ' Name', 'interactive-lesson'),
+                        'menu_name'         => esc_html__($value['general_name'], 'interactive-lesson'),
                     );
 
                     $args = array(
@@ -104,22 +104,22 @@ class Register_Taxonomies
                 if ('tag' == $value['hierarchical']) {
 
                     $labels = array(
-                        'name'                       => esc_html_x($value['general_name'], 'taxonomy general name', 'ociolanzarote'),
-                        'singular_name'              => esc_html_x($value['singular_name'], 'taxonomy singular name', 'ociolanzarote'),
-                        'search_items'               => esc_html__('Search ' . $value['general_name'], 'ociolanzarote'),
-                        'popular_items'              => esc_html__('Popular ' . $value['general_name'], 'ociolanzarote'),
-                        'all_items'                  => esc_html__('All ' . $value['general_name'], 'ociolanzarote'),
+                        'name'                       => esc_html_x($value['general_name'], 'taxonomy general name', 'interactive-lesson'),
+                        'singular_name'              => esc_html_x($value['singular_name'], 'taxonomy singular name', 'interactive-lesson'),
+                        'search_items'               => esc_html__('Search ' . $value['general_name'], 'interactive-lesson'),
+                        'popular_items'              => esc_html__('Popular ' . $value['general_name'], 'interactive-lesson'),
+                        'all_items'                  => esc_html__('All ' . $value['general_name'], 'interactive-lesson'),
                         'parent_item'                => null,
                         'parent_item_colon'          => null,
-                        'edit_item'                  => esc_html__('Edit ' . $value['singular_name'], 'ociolanzarote'),
-                        'update_item'                => esc_html__('Update ' . $value['singular_name'], 'ociolanzarote'),
-                        'add_new_item'               => esc_html__('Add ' . $value['singular_name'], 'ociolanzarote'),
-                        'new_item_name'              => esc_html__('New ' . $value['singular_name'] . ' Name', 'ociolanzarote'),
-                        'separate_items_with_commas' => esc_html__('Separate ' . strtolower($value['general_name']) . ' with commas', 'ociolanzarote'),
-                        'add_or_remove_items'        => esc_html__('Add or remove ' . strtolower($value['general_name']), 'ociolanzarote'),
-                        'choose_from_most_used'      => esc_html__('Choose from the most used ' . strtolower($value['singular_name']), 'ociolanzarote'),
-                        'not_found'                  => esc_html__('No ' . strtolower($value['singular_name']) . ' found.', 'ociolanzarote'),
-                        'menu_name'                  => esc_html__($value['general_name'], 'ociolanzarote'),
+                        'edit_item'                  => esc_html__('Edit ' . $value['singular_name'], 'interactive-lesson'),
+                        'update_item'                => esc_html__('Update ' . $value['singular_name'], 'interactive-lesson'),
+                        'add_new_item'               => esc_html__('Add ' . $value['singular_name'], 'interactive-lesson'),
+                        'new_item_name'              => esc_html__('New ' . $value['singular_name'] . ' Name', 'interactive-lesson'),
+                        'separate_items_with_commas' => esc_html__('Separate ' . strtolower($value['general_name']) . ' with commas', 'interactive-lesson'),
+                        'add_or_remove_items'        => esc_html__('Add or remove ' . strtolower($value['general_name']), 'interactive-lesson'),
+                        'choose_from_most_used'      => esc_html__('Choose from the most used ' . strtolower($value['singular_name']), 'interactive-lesson'),
+                        'not_found'                  => esc_html__('No ' . strtolower($value['singular_name']) . ' found.', 'interactive-lesson'),
+                        'menu_name'                  => esc_html__($value['general_name'], 'interactive-lesson'),
                     );
 
                     $args = array(
@@ -158,8 +158,8 @@ class Register_Taxonomies
             'grade_level'           => array(
                 'hierarchical'      => 'category',
                 'slug'              => 'grade-level',
-                'singular_name'     => esc_html__('Grade Level', 'ociolanzarote'),
-                'general_name'      => esc_html__('Grade Levels', 'ociolanzarote'),
+                'singular_name'     => esc_html__('Grade Level', 'interactive-lesson'),
+                'general_name'      => esc_html__('Grade Levels', 'interactive-lesson'),
                 'post_type'         => array('interactive_lesson'),
             ),
         );

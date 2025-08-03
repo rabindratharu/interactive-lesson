@@ -14,6 +14,7 @@ if (! defined('ABSPATH')) {
 }
 
 use Interactive_Lesson\Inc\Traits\Singleton;
+use Interactive_Lesson\Inc\Utils;
 
 /**
  * Register block class.
@@ -59,6 +60,8 @@ class Register_Block
      */
     public function register_block_types()
     {
+        $saved_options = Utils::get_options();
+
         if (! function_exists('register_block_type')) {
             if (defined('WP_DEBUG') && WP_DEBUG) {
                 error_log('Interactive Lesson: register_block_type function not found. Ensure WordPress version supports blocks.');
@@ -97,10 +100,19 @@ class Register_Block
                 }
                 continue;
             }
-
             $block_folder = dirname($filename);
+
+            $blockDir = basename($block_folder); // e.g. "quiz-block"
+            $blockSlug = str_replace('-', '_', $blockDir); // "quiz_block"
+
             try {
+
+                if (is_wp_error($saved_options) || empty($saved_options[$blockSlug])) {
+                    return;
+                }
+
                 $result = register_block_type($block_folder);
+
                 if (false === $result && defined('WP_DEBUG') && WP_DEBUG) {
                     error_log('Interactive Lesson: Failed to register block from ' . $filename);
                 }

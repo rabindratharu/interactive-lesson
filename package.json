@@ -7,7 +7,7 @@
 	"main": "Gruntfile.js",
 	"scripts": {
 		"clean": "rimraf assets/build",
-		"init": "node ./bin/init.js && npm run build:pot && npm run build:zip",
+		"init": "npm run build:pot && npm run build:zip",
 		"build:pot": "grunt i18n",
 		"build:zip": "grunt release",
 		"build:main": "wp-scripts build --webpack-src-dir=assets/src/main --output-path=assets/build/main",

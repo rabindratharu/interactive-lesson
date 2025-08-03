@@ -29,7 +29,7 @@ const MainContent = () => {
 
     const { dbSettings, dbUpdateSetting } = data;
 
-    const { setting1 = '', setting2 = '' } = dbSettings;
+    const { setting1 = '', blocks = '' } = dbSettings;
 
     return (
         <AtrcContent>
@@ -48,9 +48,9 @@ const MainContent = () => {
                 <AtrcControlText
                     label={__('Setting 2', 'interactive-lesson')}
                     placeholder={__('Enter Another Text', 'interactive-lesson')}
-                    value={setting2}
+                    value={blocks}
                     onChange={newVal =>
-                        dbUpdateSetting('setting2', newVal)
+                        dbUpdateSetting('blocks', newVal)
                     }
 
                 />

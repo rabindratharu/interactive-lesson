@@ -24,14 +24,14 @@ const SettingsRouters = () => {
     return (
         <>
             <AtrcRoutes>
-                <AtrcRoute
+                {/* <AtrcRoute
                     exact
                     path='setting1/*'
                     element={<Settings1 />}
-                />
+                /> */}
                 <AtrcRoute
                     exact
-                    path='setting2/*'
+                    path='blocks/*'
                     element={<Settings2 />}
                 />
                 <AtrcRoute
@@ -43,7 +43,7 @@ const SettingsRouters = () => {
                     path='/'
                     element={
                         <AtrcNavigate
-                            to='setting1'
+                            to='blocks'
                             replace
                         />
                     }
@@ -72,13 +72,13 @@ const InitSettings = () => {
                 <AtrcNav
                     variant='vertical'
                     navs={[
+                        // {
+                        //     to: 'setting1',
+                        //     children: __('Settings 1', 'interactive-lesson'),
+                        // },
                         {
-                            to: 'setting1',
-                            children: __('Settings 1', 'interactive-lesson'),
-                        },
-                        {
-                            to: 'setting2',
-                            children: __('Settings 2', 'interactive-lesson'),
+                            to: 'blocks',
+                            children: __('Blocks', 'interactive-lesson'),
                         },
                         {
                             to: 'advanced',
