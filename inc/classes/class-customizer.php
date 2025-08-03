@@ -10,7 +10,6 @@
 namespace Interactive_Lesson\Inc;
 
 use Interactive_Lesson\Inc\Traits\Singleton;
-use Interactive_Lesson\Inc\Utils;
 use WP_Customize_Manager;
 use Interactive_Lesson\Inc\Controls\Text as InteractiveLessonTextControl;
 
@@ -81,7 +80,6 @@ class Customizer
                 // Get class name from file
                 $base = sanitize_file_name(basename($file, '.php'));
                 $class_slug = str_replace('class-', '', $base);
-                $class_name = str_replace('-', '_', $class_slug);
                 $full_class = __NAMESPACE__ . '\\Controls\\' . str_replace('-', '_', ucwords($class_slug, '-'));
 
                 // Include and validate control file
