@@ -1,7 +1,7 @@
 <?php
 
 /**
- * REST Endpoint for Product Reviews
+ * REST Endpoint
  *
  * @package interactive-lesson
  * @since 1.0.0
@@ -26,7 +26,7 @@ if (! defined('ABSPATH')) {
 /**
  * Class REST Endpoint
  *
- * Handles REST API endpoints for product reviews.
+ * Handles REST API endpoints.
  */
 class Rest_Endpoint
 {
@@ -41,6 +41,11 @@ class Rest_Endpoint
     private const RATING_META_KEY = 'reviewer_rating';
     private const REVIEWER_META_KEY = 'reviewer_name';
     private const PRODUCT_META_KEY = 'review_item';
+
+    private const QUIZ_SCORE_KEY = 'quiz_score_';
+    private const QUIZ_ANSWER_KEY = 'quiz_answer_';
+    private const QUIZ_CORRECT_KEY = 'quiz_correct_';
+    private const QUIZ_TIMESTAMP_KEY = 'quiz_timestamp_';
 
     /**
      * Initializes the class and sets up hooks.
@@ -103,10 +108,7 @@ class Rest_Endpoint
                 [
                     'methods'             => 'POST',
                     'callback'            => [$this, 'update_submission'],
-                    //'permission_callback' => [$this, 'get_item_permissions_check'],
-                    'permission_callback' => function () {
-                        return is_user_logged_in();
-                    }
+                    'permission_callback' => [$this, 'check_user_auth'],
                 ],
             ]
         );
@@ -118,36 +120,49 @@ class Rest_Endpoint
                 [
                     'methods'             => 'GET',
                     'callback'            => [$this, 'get_result'],
-                    //'permission_callback' => [$this, 'get_item_permissions_check'],
-                    'permission_callback' => function () {
-                        return is_user_logged_in();
-                    }
+                    'permission_callback' => [$this, 'check_user_auth'],
                 ],
             ]
         );
 
-        // Register meta fields
-        register_meta('user', 'quiz_score_', [
-            'type'          => 'integer',
-            'description'   => esc_html__('User quiz score', 'interactive-lesson'),
-            'single'        => true,
-            'show_in_rest'  => true,
-            'default'       => 0
-        ]);
+        // Register user meta for REST API
+        $this->register_user_meta();
+    }
 
-        register_meta('user', 'quiz_answer_', [
-            'type'          => 'string',
-            'description'   => esc_html__('Answer for quiz question', 'interactive-lesson'),
-            'single'        => true,
-            'show_in_rest'  => true
-        ]);
+    /**
+     * Registers user meta fields for REST API.
+     */
+    private function register_user_meta(): void
+    {
+        $meta_fields = [
+            self::QUIZ_SCORE_KEY => [
+                'type'         => 'integer',
+                'description'  => esc_html__('User quiz score', 'interactive-lesson'),
+                'default'      => 0,
+            ],
+            self::QUIZ_ANSWER_KEY => [
+                'type'         => 'string',
+                'description'  => esc_html__('Answer for quiz question', 'interactive-lesson'),
+            ],
+            self::QUIZ_CORRECT_KEY => [
+                'type'         => 'string',
+                'description'  => esc_html__('Correctness of quiz answer (1 or 0)', 'interactive-lesson'),
+            ],
+            self::QUIZ_TIMESTAMP_KEY => [
+                'type'         => 'string',
+                'description'  => esc_html__('Timestamp of quiz submission', 'interactive-lesson'),
+            ],
+        ];
 
-        register_meta('user', 'quiz_correct_', [
-            'type'          => 'string',
-            'description'   => esc_html__('Correctness of quiz answer (1 or 0)', 'interactive-lesson'),
-            'single'        => true,
-            'show_in_rest'  => true
-        ]);
+        foreach ($meta_fields as $key => $args) {
+            register_meta('user', $key, [
+                'type'         => $args['type'],
+                'description'  => $args['description'],
+                'single'       => true,
+                'show_in_rest' => true,
+                'default'      => $args['default'] ?? '',
+            ]);
+        }
     }
 
     /**
@@ -510,6 +525,23 @@ class Rest_Endpoint
     }
 
     /**
+     * Checks user authentication.
+     *
+     * @return bool|WP_Error
+     */
+    public function check_user_auth()
+    {
+        if (!is_user_logged_in()) {
+            return new WP_Error(
+                'rest_forbidden',
+                __('You must be logged in to access this resource.', 'interactive-lesson'),
+                ['status' => 401]
+            );
+        }
+        return true;
+    }
+
+    /**
      * Retrieves the settings.
      *
      * @since 1.0.0
@@ -649,17 +681,14 @@ class Rest_Endpoint
     }
 
     /**
-     * Handles the submission of quiz answers.
+     * Handles quiz answer submission.
      *
-     * @since 1.0.0
      * @param WP_REST_Request $request Full details about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error on failure.
+     * @return WP_REST_Response|WP_Error
      */
     public function update_submission(WP_REST_Request $request)
     {
-        // Verify nonce for security
-        $nonce = $request->get_header('X-WP-Nonce');
-        if (!wp_verify_nonce($nonce, 'wp_rest')) {
+        if (!wp_verify_nonce($request->get_header('X-WP-Nonce'), 'wp_rest')) {
             return new WP_Error('invalid_nonce', 'Invalid nonce.', ['status' => 403]);
         }
 
@@ -669,7 +698,6 @@ class Rest_Endpoint
         $correct_answer = sanitize_text_field($params['correct_answer'] ?? '');
         $user_id = get_current_user_id();
 
-        // Validate input
         if (empty($question) || empty($answer) || empty($correct_answer)) {
             return new WP_Error('missing_params', 'Missing required parameters.', ['status' => 400]);
         }
@@ -677,29 +705,27 @@ class Rest_Endpoint
         $question_hash = md5($question);
         $is_correct = (trim($answer) === trim($correct_answer));
 
-        // Update user meta
-        update_user_meta($user_id, 'quiz_answer_' . $question_hash, $answer);
-        update_user_meta($user_id, 'quiz_correct_' . $question_hash, $is_correct ? '1' : '0');
+        update_user_meta($user_id, self::QUIZ_ANSWER_KEY . $question_hash, $answer);
+        update_user_meta($user_id, self::QUIZ_CORRECT_KEY . $question_hash, $is_correct ? '1' : '0');
+        update_user_meta($user_id, self::QUIZ_TIMESTAMP_KEY, current_time('mysql'));
 
-        // Update score if correct
         if ($is_correct) {
-            $current_score = (int) get_user_meta($user_id, 'quiz_score_', true);
-            update_user_meta($user_id, 'quiz_score_', $current_score + 1);
+            $current_score = (int) get_user_meta($user_id, self::QUIZ_SCORE_KEY, true);
+            update_user_meta($user_id, self::QUIZ_SCORE_KEY, $current_score + 1);
         }
 
         return rest_ensure_response([
             'success' => true,
-            'answer' => $answer,
-            'message' => $is_correct ? 'Correct!' : 'Incorrect. The correct answer is ' . $correct_answer . '.'
+            'answer'  => $answer,
+            'message' => $is_correct ? 'Correct!' : 'Incorrect. The correct answer is ' . $correct_answer . '.',
         ]);
     }
 
     /**
-     * Handles the retrieval of quiz results.
+     * Retrieves quiz results.
      *
-     * @since 1.0.0
      * @param WP_REST_Request $request Full details about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error on failure.
+     * @return WP_REST_Response|WP_Error
      */
     public function get_result(WP_REST_Request $request)
     {
@@ -710,25 +736,26 @@ class Rest_Endpoint
             $wpdb->prepare(
                 "SELECT meta_key, meta_value FROM $wpdb->usermeta WHERE user_id = %d AND meta_key LIKE %s",
                 $user_id,
-                'quiz_answer_%'
+                self::QUIZ_ANSWER_KEY . '%'
             )
         );
 
         $results = [];
         foreach ($meta_keys as $meta) {
-            $question_hash = substr($meta->meta_key, strlen('quiz_answer_'));
-            $is_correct = get_user_meta($user_id, 'quiz_correct_' . $question_hash, true) === '1';
+            $question_hash = substr($meta->meta_key, strlen(self::QUIZ_ANSWER_KEY));
+            $is_correct = get_user_meta($user_id, self::QUIZ_CORRECT_KEY . $question_hash, true) === '1';
             $results[] = [
                 'question_hash' => $question_hash,
-                'answer' => esc_html($meta->meta_value),
-                'is_correct' => $is_correct
+                'answer'        => esc_html($meta->meta_value),
+                'is_correct'    => $is_correct,
             ];
         }
 
         return rest_ensure_response([
-            'success' => true,
-            'results' => $results,
-            'total_score' => (int) get_user_meta($user_id, 'quiz_score_', true)
+            'success'     => true,
+            'results'     => $results,
+            'total_score' => (int) get_user_meta($user_id, self::QUIZ_SCORE_KEY, true),
+            'timestamp'   => get_user_meta($user_id, self::QUIZ_TIMESTAMP_KEY, true) ?: '',
         ]);
     }
 }

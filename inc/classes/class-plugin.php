@@ -60,6 +60,7 @@ final class Plugin
 		Meta_Boxes::get_instance();
 		Shortcode::get_instance();
 		Rest_Endpoint::get_instance();
+		Graphql::get_instance();
 		Customizer::get_instance();
 		if (is_admin()) {
 			Dashboard::get_instance();
