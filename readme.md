@@ -90,9 +90,9 @@ We need to create review item first through dashboard->reviews->add review.
 
 REST API endpoint to fetch reviews allow filtering by rating via query params.
 
-- `https://example.com/wp-json/interactive_lesson/v1/reviews` display all reviews posts.
-- `https://example.com/wp-json/interactive_lesson/v1/reviews?rating=4` display all reviews posts which have only 4 start rating value.
-- `https://example.com/wp-json/interactive_lesson/v1/reviews?rating=3-5` display all reviews posts which have rating values between 3 and 5.
+- `https://example.com/wp-json/interactive-lesson/v1/reviews` display all reviews posts.
+- `https://example.com/wp-json/interactive-lesson/v1/reviews?rating=4` display all reviews posts which have only 4 start rating value.
+- `https://example.com/wp-json/interactive-lesson/v1/reviews?rating=3-5` display all reviews posts which have rating values between 3 and 5.
 
 Replace `https://example.com/` to your local site url or live site url.
 
