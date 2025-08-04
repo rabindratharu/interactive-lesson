@@ -13,6 +13,7 @@ module.exports = function (grunt) {
                     '**',
                     '!style - Copy.css',
                     '!resources/**',
+                    '!vendor/**',
                     '!assets/src/**',
                     '!node_modules/**',
                     '!vendor/**',
@@ -114,6 +115,9 @@ module.exports = function (grunt) {
                         '!node_modules/**',
                         '!php-tests/**',
                         '!bin/**',
+                        '!vendor/**',
+                        '!tests/**',
+                        '!cypress/**',
                     ],
                 },
             },
@@ -149,6 +153,9 @@ module.exports = function (grunt) {
                         src: [
                             '**/*.php', //all php
                             '!node_modules/**',
+                            '!vendor/**',
+                            '!tests/**',
+                            '!cypress/**',
                         ],
                         expand: true,
                     },
